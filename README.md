@@ -1,71 +1,33 @@
-# purl
-**P**athfinding **U**sing **R**einforcement **L**earning
+This is a fork of the [original repository](https://github.com/spov-research/purl.git) under the project [Smart_POV](https://github.com/hamidrezafahimi/Smart_POV.git) which funds basics for intelligence development on simulated voyager agents. The original code is editted such that it simply interacts - and may be evaluated - with our developed professional (D)RL-evaluation platform [MIIO2V](https://github.com/mohammadr-kaz/MIIO2V.git). A comparison of this project with [other similar works]() id documented [here]().
 
-## Algorithms
-### MDP (using the `FullyObsWrapper`)
-* **Q-table**
-* **Q-network**
-### POMDP
-* **PPO**
-* **DQN** (with the Double DQN extension) - work in progress, not currently working as intended
-* **DRQN**  - work in progress, not currently working as intended
+## Prerequisites
 
-## Getting Started
-### Prerequisites
+- Ubuntu 20.04
+- ROS Noetic
+- Anaconda
 
-`python` + `pip`, version 3.6 or greater
-
-### Installing
-**Note**: It's recommended that you install the Python dependencies in a virtual environment.  `virtualenv` and `virtualenvwrapper`:
-
-```
-pip install virtualenv
-pip install virtualenvwrapper
+## How to Run
+1. Clone the repository.
+```sh
+git clone https://github.com/spov-research/purl.git
+cd purl
 ```
 
-**Note**: To get `matplotlib` to work on a Mac with a virtual environment you have to use `venv` instead
-
-
-#### Setting up a virtual environment
-
-```mkvirtualenv purl```
-
-or with `venv`:
-
-```python -m venv purl-venv```
-
-#### Installing Python dependencies
-
-First, switch to the virtual environment:
-
-```workon purl```
-
-or with `venv`:
-
-```source purl-venv/bin/activate```
-
-**Note**: You can set up an alias in your shell to make the virtual environment more accessible,
-e.g `alias actpurl='source /path/to/purl/purl-venv/bin/activate'`
-
-Then, install the dependencies by running:
-
-```pip install -r requirements.txt```
-
-or if you have `pip-sync` installed:
-
-```pip-sync```
-
-
-
-## Running `purl`
-
-There are two main subcommands to PURL
+2. Create a conda environment with python 3.6 and tensorflow 1.13.1 then activate it.
+```sh
+conda create -n purl python=3.6 tensorflow=1.13.1
+activate purl
+```
+3. Install the requirements.
+```sh
+pip install -r requirements.txt
+```
 
 ### `train`
 
 To train a model, run:
 
-```
+```sh
 ./purl train
 ```
 
@@ -75,46 +37,19 @@ For example, to train a model using the PPO algorithm on the `MiniGrid-LavaCross
 ./purl train --algorithm ppo --environment MiniGrid-LavaCrossingS9N1-v0
 ```
 
+- Algorithms
+MDP (using the `FullyObsWrapper`)
+* Q-table
+* Q-network
+POMDP
+* PPO
+* DQN (with the Double DQN extension) - work in progress, not currently working as intended
+* DRQN  - work in progress, not currently working as intended
+
 ### `visualize`
 
 To visualize a model, run:
 
-```
+```sh
 ./purl vizualize
 ```
-
-
-## Development
-
-### Updating dependencies
-Python dependencies are managed by [`pip-compile`](https://github.com/jazzband/pip-tools#installation)
-
-To add a new package, simply add it to the list in `requirements.in`.
-
-You then update the `requirements.txt`-file by running
-
-```pip-compile --output-file requirements.txt requirements.in```
-
-
-
-## Built With
-
-* [gym-minigrid](https://github.com/maximecb/gym-minigrid) - Minimalistic gridworld environment for OpenAI Gym
-* [PyTorch](https://github.com/pytorch/pytorch) - Tensors and Dynamic neural networks in Python
-
-
-
-## Authors
-
-* Anne Engström
-* Joel Lidin
-* Gustav Molander
-* Olle Månsson
-* Noa Onoszko
-* Hugo Ölund
-
-
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
